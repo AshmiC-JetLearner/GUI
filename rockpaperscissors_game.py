@@ -6,7 +6,19 @@ player_score=0
 computer_score=0
 options=[('rock',0),('paper',1),('scissors',2)]
 
+def computer_wins():
+    global computer_score,player_score
+    computer_score += 1
+    winner_label.config(text='Computer Won!!')
+    computer_score_lbl.config(text=f'Computer Score:{computer_score}')
+    player_score_lbl.config(text=f'Player Score:{player_score}')
 
+def player_wins():
+    global computer_score,player_score
+    player_score += 1
+    winner_label.config(text='Player Won!!')
+    computer_score_lbl.config(text=f'Computer Score:{computer_score}')
+    player_score_lbl.config(text=f'Player Score:{player_score}')
 
 
 
@@ -50,7 +62,7 @@ scissors_btn=Button(input_frame,text='scissors',width=15,bd=3,
 scissors_btn.grid(row=1,column=3,pady=5,padx=8)
 
 score_lbl=Label(input_frame,text='Score:',font=app_font,fg='blue',bg='white')
-score_lbl.grid(row=2,column=1,padx=5)
+score_lbl.grid(row=2,column=0)
 
 
 
@@ -58,16 +70,19 @@ computer_choice_lbl=Label(input_frame,text='Computer Choice:___',
                           font=app_font,bg='white',fg='purple')
 computer_choice_lbl.grid(row=2,column=3)
 
-player_choice_lbl=Label(input_frame,text='Your Selected:___',
+player_choice_lbl=Label(input_frame,text='Your Choice:___',
                         bg='white',font=app_font)
-player_choice_lbl.grid(row=3,column=3,padx=5)
+player_choice_lbl.grid(row=3,column=3)
 
 
-player_score_lbl=Label(text='Your Score:___',font=app_font,
-                       bg='white',fg='red')
+player_score_lbl=Label(input_frame,text='Your Score:___',font=app_font,
+                       bg='white',fg='green')
+player_score_lbl.grid(row=2,column=1)
 
-player_score_lbl.grid(row=2,column=2)
-
+computer_score_lbl=Label(input_frame,text='Computer Score:___',
+                         font=app_font,bg='white',fg='purple')
+computer_score_lbl.grid(row=3,column=1)
 
 game_window.geometry('700x300')
 game_window.mainloop()
+
