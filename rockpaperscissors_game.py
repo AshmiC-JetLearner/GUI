@@ -49,10 +49,24 @@ scissors_btn=Button(input_frame,text='scissors',width=15,bd=3,
                     bg='white',pady=5,command=None)
 scissors_btn.grid(row=1,column=3,pady=5,padx=8)
 
+score_lbl=Label(input_frame,text='Score:',font=app_font,fg='blue',bg='white')
+score_lbl.grid(row=2,column=1,padx=5)
 
 
 
+computer_choice_lbl=Label(input_frame,text='Computer Choice:___',
+                          font=app_font,bg='white',fg='purple')
+computer_choice_lbl.grid(row=2,column=3)
 
+player_choice_lbl=Label(input_frame,text='Your Selected:___',
+                        bg='white',font=app_font)
+player_choice_lbl.grid(row=3,column=3,padx=5)
+
+
+player_score_lbl=Label(text='Your Score:___',font=app_font,
+                       bg='white',fg='red')
+
+player_score_lbl.grid(row=2,column=2)
 
 
 game_window.geometry('700x300')
