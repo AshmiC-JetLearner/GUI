@@ -21,10 +21,55 @@ def player_wins():
     player_score_lbl.config(text=f'Player Score:{player_score}')
 
 
+def tie():
+    global computer_score,player_score
+    winner_label.config(text='TIE!!')
 
+    computer_score_lbl.config(text='Computer Score:'+
+                              str(computer_score,fg='pink'))
+    player_score_lbl.config(text='Player Score:'+
+                              str(player_score,fg='pink'))
 
+#function to randomly select computer choice
 
+def get_computer_choice():
+    return random.choice(options)
 
+#function to get player input
+
+def get_player_choice(player_input):
+    global computer_score,player_score
+    print(player_input)
+    computer_input=get_computer_choice()
+    print(computer_input)
+    player_choice_lbl.config(fg='blue',
+                             text='You Selected:'+player_input[0])
+    computer_choice_lbl.config(fg='blue',
+                               text='Computer Selected:'+computer_input[0])
+
+    if computer_input==player_input:
+        tie()
+
+    #if the player has choosen rock
+    if (player_input[1]==0):#0=rock
+        if (computer_input[1]==1):#1=paper
+            computer_wins()
+        elif (computer_input[1]==2):#2=scissors
+            player_wins()
+
+    #if player has choosen paper
+    elif (player_input[1]==1):
+        if (computer_input[1]==0):
+            player_wins()
+        elif (computer_input[1]==2):
+            computer_wins()
+
+    #if player has choosen scissors
+    elif (player_input[1]==2):
+        if (computer_input[1]==0):
+            computer_wins()
+        elif (computer_input[1]==1):
+            player_wins()
 
 #creating main window
 game_window=Tk()
@@ -50,15 +95,15 @@ player_options=Label(input_frame,text='Your Options:',
 player_options.grid(row=0,column=0,pady=8)
 
 rock_btn=Button(input_frame,text='Rock',width=15,bd=3,
-                bg='pink',pady=5,command=None)
+                bg='pink',pady=5,command=lambda:get_player_choice(options[0]))
 rock_btn.grid(row=1,column=1,padx=8,pady=5)
 
 paper_btn=Button(input_frame,text='paper',width=15,bd=3,
-                 bg='grey',pady=5,command=None)
+                 bg='grey',pady=5,command=lambda:get_player_choice(options[1]))
 paper_btn.grid(row=1,column=2,padx=8,pady=5)
 
 scissors_btn=Button(input_frame,text='scissors',width=15,bd=3,
-                    bg='white',pady=5,command=None)
+                    bg='white',pady=5,command=lambda:get_player_choice(options[2]))
 scissors_btn.grid(row=1,column=3,pady=5,padx=8)
 
 score_lbl=Label(input_frame,text='Score:',font=app_font,fg='blue',bg='white')
